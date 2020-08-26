@@ -1,8 +1,8 @@
 import config from "./config";
-//"./config" + Data structure from Treehouse React Authentication practice:
-//Linking REST API and express 
+
+//Linking REST API and express; Data the helper class proving utility methods.
 export default class Data {
-  api(path, method = 'GET', body = null) {
+  api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
     const url = config.apiBaseUrl + path;
   
     const options = {
@@ -16,11 +16,16 @@ export default class Data {
       options.body = JSON.stringify(body);
     }
 
+    if (requiresAuth){
+      const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
+      options.headers["Authorization"] = `Basic ${encodedCredentials}`;
+    }
+  
     return fetch(url, options);
   }
 
-  async getUser() {
-    const response = await this.api(`/users`, 'GET', null);
+  async getUser(emailAddress, password) {
+    const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
     if (response.status === 200) {
       return response.json().then(data => data);
     }

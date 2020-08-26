@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import Data from "./Data";
+import Cookies from "js-cookie";
 
 const Context = React.createContext(); 
 
 export class Provider extends Component {
+
+  state = {
+    authenticatedUser: null
+  };
 
   constructor() {
     super();
@@ -11,8 +16,14 @@ export class Provider extends Component {
   }
 
   render() {
+    const { authenticatedUser } = this.state; //destructuring to extract authenticatedUser
     const value = {
+      authenticatedUser,
       data: this.data,
+      actions: {
+        signIn: this.signIn, //Adds/Pass "actions" property and object for Provider's value
+        signOut: this.signOut,
+      },
     };
     
     return (
@@ -22,13 +33,21 @@ export class Provider extends Component {
     );
   }
 
-  
-  signIn = async () => {
-
+/*
+  Accepts emailAddress and password as arguments
+   to use credentials to authorize access to getUser() data:
+*/
+  signIn = async (emailAddress, password) => {
+    const user = await this.data.getUser(emailAddress, password);
+    if (user !== null){
+      this.setState({ authenticatedUser: user });
+      Cookies.set("authenticatedUser", JSON.stringify(user), { expires: 1 });
+    }
+    return user;
   }
 
   signOut = () => {
-
+    this.setState({ authenticatedUser: null });
   }
 }
 
