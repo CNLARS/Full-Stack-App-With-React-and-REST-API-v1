@@ -24,7 +24,7 @@ export default class Data {
     return fetch(url, options);
   }
 
-/* FROM USER ROUTES */
+/* DATA VIA USER ROUTES */
 
 //GET "/api/users", (200):
   async getUser(emailAddress, password) {
@@ -56,7 +56,7 @@ export default class Data {
     }
   }
 
-//TODO: /* FROM COURSE ROUTES */
+/* DATA VIA COURSE ROUTES */
 
 //GET "/api/courses", (200):
   async getCourses() {
@@ -100,7 +100,7 @@ export default class Data {
       throw new Error();
     }
   }
-//Remember: api(path, method, body, requiresAuth, {credentials})!
+
 //PUT "/api/courses/:id" (204):
   async updateCourse(id, course, emailAddress, password){
     const response = await this.api(`/courses/${id}`, "PUT", course, true, { emailAddress, password } );
@@ -120,7 +120,7 @@ export default class Data {
   async deleteCourse(id, course, emailAddress, password){
     const response = await this.api(`/courses/${id}`, "DELETE", course, true, { emailAddress, password })
     if ( response.status === 204 ){
-      //return something
+      return [];
     } 
     else if ( response.status === 400 ){
       return response.json().then(data => {
@@ -131,4 +131,5 @@ export default class Data {
     }
   }
 
-} //component closing curly bracket
+}
+//Reminder: api(path, method, body, requiresAuth, {credentials})!
