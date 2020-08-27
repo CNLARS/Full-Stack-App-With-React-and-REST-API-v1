@@ -13,6 +13,7 @@ import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import Authenticated from "./components/Authenticated";
 import PrivateRoute from "./PrivateRoute"; //PrivateRoute made accessible to authenticated users only.
+import NotFound from "./components/NotFound";
 
 // import CreateCourse from "./components/CreateCourse";
 // import CourseDetail from "./components/CourseDetail";
@@ -36,7 +37,7 @@ export default () => (
       <HeaderWithContext />
 
       <Switch>
-        <Route exact path="/" component={Courses} />
+        <Route exact path="/" component={UserSignUpWithContext} />
         <PrivateRoute path="/authenticated" component={AuthWithContext} />
         <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />

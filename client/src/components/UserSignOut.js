@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
 
 /*This component doesn't render any visual elements.

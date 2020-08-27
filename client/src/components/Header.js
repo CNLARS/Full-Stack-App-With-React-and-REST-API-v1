@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import withContext from '../Context';
+import { NavLink } from 'react-router-dom';
 
 /*Top menu bar for the app:
  +Includes buttons for signing in/up 
@@ -8,7 +7,7 @@ import withContext from '../Context';
  the authenticated user's name and a button for signing out.*/
 
 const Header = (props) => {
-  const { context } = this.props;
+  const { context } = props;
   const authUser = context.authenticatedUser;
     return (
       <div className="header">
@@ -18,7 +17,7 @@ const Header = (props) => {
             {authUser ?
               <React.Fragment>
                 <span>Welcome {authUser.firstName} {authUser.lastName}!</span>
-                <Link to="/signout">Sign Out</Link>
+                <NavLink to="/signout">Sign Out</NavLink>
               </React.Fragment>
             :
               <React.Fragment>
