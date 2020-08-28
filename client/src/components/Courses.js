@@ -7,27 +7,37 @@ This component provides the "Courses" screen by assembling a list of courses fro
 
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import NotFound from "./NotFound";
 
 export default class Courses extends Component{
-  constructor(){
-    super();
-    this.state = {
-      courseList: [],
+  state = {
+      courseList: []
     };
+
+  // async componentDidMount(){
+  //   //Study Reference: https://medium.com/karuna-sehgal/making-api-calls-using-axios-75785deca566
+  //     axios.get("http://localhost:5000/api/courses")
+  //       .then(response => 
+  //         this.setState({
+  //         courseList: response.data
+  //       }))
+  //         .catch(error => console.log(error))
+  //           .finally(console.log("Go Go Gadget: API Data Fetch!"));
+  // }
+
+   async componentDidMount(){
+    const { context } = this.props;
+      context.data.getCourses()
+      .then(response => {
+          this.setState({
+          courseList: response
+          })
+        })
+          .catch(error => console.log(error))
+            .finally(console.log("Go Go Gadget: CoursesWithContext!"));
   }
 
-  componentDidMount(){
-    //Study Reference: https://medium.com/karuna-sehgal/making-api-calls-using-axios-75785deca566
-      axios.get("http://localhost:5000/api/courses")
-        .then(response => 
-          this.setState({
-          courseList: response.data
-        }))
-          .catch(error => console.log(error))
-            .finally(console.log("Go Go Gadget: API Data Fetch!"));
-  }
   render(){
     let courses;
       
