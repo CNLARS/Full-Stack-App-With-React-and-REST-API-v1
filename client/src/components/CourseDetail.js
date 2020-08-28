@@ -60,7 +60,7 @@ export default class CourseDetail extends Component{
             description: response.description,
             estimatedTime: response.estimatedTime,
             materialsNeeded: response.materialsNeeded,
-            user: response.user,
+            // user: response.user,
             userId: response.userId,
             authenticatedUser: context.authenticatedUser,
           }); console.log(response)
@@ -78,8 +78,7 @@ export default class CourseDetail extends Component{
       materialsNeeded,
       user,
       userId,
-      authenticatedUser 
-   } = this.state;
+      authenticatedUser } = this.state;
 
    return (
    <>
