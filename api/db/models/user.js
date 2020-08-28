@@ -10,7 +10,12 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        //Refactored to feature Column declaration shorthand syntax:
+    // userId (Integer, nullable)
+        userId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+    //Refactored to feature Column declaration shorthand syntax:
         
     // firstName (String)
         firstName: Sequelize.STRING,
@@ -28,6 +33,7 @@ module.exports = (sequelize) => {
          (i.e. a "User" has many "Courses").*/
 
          User.hasMany(models.Course, {
+             as: "user",
             foreignKey: { 
                 fieldName: "userId",
                 allowNull: false,

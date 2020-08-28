@@ -33,7 +33,10 @@ import { NavLink } from "react-router-dom";
 
 
 export default class CourseDetail extends Component{
-  state = {
+   constructor(){
+      super();
+      this.state = 
+   {
       courseID: "",
       title: "",
       description: "",
@@ -42,11 +45,13 @@ export default class CourseDetail extends Component{
       user: "",
       userId: "",
       authenticatedUser: ""    
-    };
+   };
+}
 
    async componentDidMount(){
     const { context } = this.props;
     const { id } = this.props.match.params;
+      
       context.data.getCourseByID(id)
       .then(response => {
           this.setState({
@@ -73,7 +78,8 @@ export default class CourseDetail extends Component{
       materialsNeeded,
       user,
       userId,
-      authenticatedUser } = this.state;
+      authenticatedUser 
+   } = this.state;
 
    return (
    <>
