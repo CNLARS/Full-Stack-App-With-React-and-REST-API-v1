@@ -34,7 +34,7 @@ import { NavLink } from "react-router-dom";
 
 export default class CourseDetail extends Component{
   state = {
-      courseId: "",
+      courseID: "",
       title: "",
       description: "",
       estimatedTime: "",
@@ -50,7 +50,7 @@ export default class CourseDetail extends Component{
       context.data.getCourseByID(id)
       .then(response => {
           this.setState({
-            courseId: response.id,
+            courseID: response.id,
             title: response.title,
             description: response.description,
             estimatedTime: response.estimatedTime,
@@ -66,7 +66,7 @@ export default class CourseDetail extends Component{
 
   render(){
    const {
-      courseId,
+      courseID,
       title,
       description,
       estimatedTime,
@@ -82,7 +82,7 @@ export default class CourseDetail extends Component{
           <div className="bounds">
             <div className="grid-100">
                <span>
-               <NavLink className="button" to={`/courses/${courseId}/update`}>Update Course</NavLink>
+               <NavLink className="button" to={`/courses/${courseID}/update`}>Update Course</NavLink>
                <NavLink className="button" to="#">Delete Course</NavLink>
                </span>
                <NavLink className="button button-secondary" to="/">Return to Course List</NavLink>
@@ -92,7 +92,7 @@ export default class CourseDetail extends Component{
         <div className="bounds course--detail">
           <div className="grid-66">
             <div className="course--header">
-              <h4 className="course--label">Course: </h4>
+              <h4 className="course--label">Course {courseID}:</h4>
               <h3 className="course--title">{title}</h3>
               <p>By: {userId}</p>
             </div>
