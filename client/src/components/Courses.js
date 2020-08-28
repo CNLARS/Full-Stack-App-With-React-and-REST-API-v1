@@ -35,7 +35,7 @@ export default class Courses extends Component{
           ( courses = this.state.courseList.map( (course) => 
           <div className="bounds">
             <div className="grid-33">
-              <NavLink className="course--module course--link" to={`/courses/${course.id}`} key={course.id}>
+              <NavLink className="course--module course--link" to={`/courses/${course.id}`} >
                 <h4 className="course--label">Course {course.id}</h4>
                 <h3 className="course--title">{course.title}</h3>
               </NavLink>
