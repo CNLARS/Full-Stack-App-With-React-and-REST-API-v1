@@ -10,12 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-    // userId (Integer, nullable)
-        userId: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
-    //Refactored to feature Column declaration shorthand syntax:
+        //Refactored to feature Column declaration shorthand syntax:
         
     // firstName (String)
         firstName: Sequelize.STRING,

@@ -10,11 +10,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-    // userId (Integer, nullable)
-        userId: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-        },
+
     // title (String)
         title: Sequelize.STRING,
     // description (Text)
