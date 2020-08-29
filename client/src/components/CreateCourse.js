@@ -120,7 +120,7 @@ export default class CreateCourse extends Component{
 
             submitCourse = () => {
                 const { context } = this.props;
-                const { emailAddress, password} = context.authenticatedUser;
+                const { id, emailAddress, password} = context.authenticatedUser;
             
                 //new Course:
                 const {   
@@ -128,7 +128,6 @@ export default class CreateCourse extends Component{
                     description,
                     estimatedTime,
                     materialsNeeded,
-                    userId,
                     errors  } = this.state;
 
                     const course = {   
@@ -136,7 +135,7 @@ export default class CreateCourse extends Component{
                         description,
                         estimatedTime,
                         materialsNeeded,
-                        userId  }
+                        userId:id  }
             
                 context.data.createCourse(course, emailAddress, password)
                   .then( errors => {
