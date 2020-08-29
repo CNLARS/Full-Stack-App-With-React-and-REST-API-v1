@@ -16,11 +16,11 @@ import PrivateRoute from "./PrivateRoute"; //PrivateRoute made accessible to aut
 import NotFound from "./components/NotFound";
 
 import CreateCourse from "./components/CreateCourse";
-// import CourseDetail from "./components/CourseDetail";
+import CourseDetail from "./components/CourseDetail";
 // import UpdateCourse from "./components/UpdateCourse";
 
 import withContext from "./Context";
-import CourseDetail from './components/CourseDetail';
+
 //Subscribing Components to Context:
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
