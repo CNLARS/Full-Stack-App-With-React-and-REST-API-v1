@@ -65,7 +65,7 @@ import Form from "./Form";
                     type="text" 
                     onChange={this.change}
                     className="input-title course--title--input" 
-                    placeholder="Input New Course Name"
+                    placeholder="Course Title"
                     value={title} />
                 </div>
                 <p>By: {context.authenticatedUser.firstName} {context.authenticatedUser.lastName}</p>
@@ -135,7 +135,8 @@ import Form from "./Form";
 
         updateCourse = () => {
           const { context } = this.props;
-          const { id, emailAddress, password} = context.authenticatedUser;
+          const { id } = this.props.match.params;
+          const { emailAddress, password} = context.authenticatedUser;
 
           //PUT Course details:
           const {   
