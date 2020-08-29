@@ -4,10 +4,9 @@ import Data from "../Data";
 
 /*"Create Course": 
 Allows a user to create a new course.
- Includes a "Create Course" button, 
-  onClick sends a POST request to /api/courses route.
-  Includes a "Cancel" button, 
-  returning the user to the "/" route (i.e. the list of courses).*/
+ + Includes a "Create Course" button, onClick sends a POST request to /api/courses route.
+  + Includes a "Cancel" button, returning the user to the "/" route (i.e. the list of courses).*/
+
 export default class CreateCourse extends Component{
     constructor(){
         super();
@@ -19,7 +18,6 @@ export default class CreateCourse extends Component{
         description: "",
         estimatedTime: "",
         materialsNeeded: "",
-        // userId: "",
         errors: [],
     };
 
@@ -30,7 +28,6 @@ export default class CreateCourse extends Component{
                     description,
                     estimatedTime,
                     materialsNeeded,
-                    // userId,
                     errors } = this.state;
         return(
         <div className="bounds course--detail">
@@ -127,8 +124,7 @@ export default class CreateCourse extends Component{
                     title,
                     description,
                     estimatedTime,
-                    materialsNeeded,
-                    errors  } = this.state;
+                    materialsNeeded  } = this.state;
 
                     const course = {   
                         title,
@@ -148,7 +144,7 @@ export default class CreateCourse extends Component{
                   })
                   .catch( err => { //handles rejected promises 
                     console.log(err);
-                    // this.props.history.push("/error");
+                    // this.props.history.push("/error"); Future123
                   })
               }
 

@@ -17,7 +17,7 @@ import NotFound from "./components/NotFound";
 
 import CreateCourse from "./components/CreateCourse";
 import CourseDetail from "./components/CourseDetail";
-// import UpdateCourse from "./components/UpdateCourse";
+import UpdateCourse from "./components/UpdateCourse";
 
 import withContext from "./Context";
 
@@ -29,7 +29,7 @@ const AuthWithContext = withContext(Authenticated);
 const UserSignOutWithContext = withContext(UserSignOut); //Subscribes UserSignOut component when signOut function is called.
 const CoursesWithContext = withContext(Courses);
 const CreateCourseWithContext = withContext(CreateCourse);
-// const UpdateCourseWithContext = withContext();
+const UpdateCourseWithContext = withContext(UpdateCourse);
 const CourseDetailWithContext = withContext(CourseDetail);
 
 export default () => (
@@ -46,7 +46,7 @@ export default () => (
         <PrivateRoute path="/testing123" component={AuthWithContext} />
         <Route exact path="/courses" component={CoursesWithContext} />
         <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
-        {/* <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} /> */}
+        <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} />
         <Route path="/courses/:id" component={CourseDetailWithContext} />
         <Route component={NotFound} />
       </Switch>

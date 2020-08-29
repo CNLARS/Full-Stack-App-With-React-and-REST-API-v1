@@ -125,30 +125,6 @@ export default class CourseDetail extends Component{
          );
   }
 
-//   delete = () => {
-//    const { context } = this.props;
-//    const { emailAddress } = authUser.emailAddress;
-//    const { password } = authUser.password;
-//    const { courseID } = this.state.courseID;
-//    const { title } = this.state.title;
-//    if(authUser){
-//      context.data.deleteCourse(courseID, emailAddress, password)
-//       .then(errors => {
-//          if (errors){
-//             this.setState(() => {
-//             return { errors };
-//             });
-//          } else {
-//             this.props.history.push("/");
-//             console.log(`CONFIRMED: ${title} has been deleted.`);
-//          }
-//       })
-//       .catch( (errors) => {console.log(errors)})
-// }else {
-//    console.log("Error?")
-// }}
-//   }
-
       deleteCourse = () => {
          const { context } = this.props;
          const { from } = this.props.location.state || { from: { pathname: "/" } };

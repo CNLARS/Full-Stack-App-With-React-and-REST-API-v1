@@ -1,76 +1,172 @@
+import React, { Component } from "react";
+import Form from "./Form";
+
 /*"Update Course":
  A form that allows an authorizedUser to change course data.
   Includes an "Update Course" button,
    when clicked sends a PUT request to /api/courses/:id route.
     As well as a "Cancel" button to return user to "Course Detail" page. */
 
-/*  Foundation Organizing from HTML markup:
+    export default class UpdateCourse extends Component{
+      constructor(props){
+          super(props);
+          this.state = {
+            title: "",
+            description: "",
+            estimatedTime: "",
+            materialsNeeded: "", 
+            errors: [],
+        };
+      }
 
-      <div class="bounds course--detail">
+    async componentDidMount(){
+      const { context } = this.props;
+      const { id } = this.props.match.params;
+         
+         await context.data.getCourseByID(id)
+         .then(response => {
+            this.setState({
+              title: response.title,
+              description: response.description,
+              estimatedTime: response.estimatedTime,
+              materialsNeeded: response.materialsNeeded,
+            }); 
+            console.log(response); //Testing123
+         })
+            .catch(error => console.log(error));
+   }
+
+    render(){
+      const { context } = this.props;
+         const { 
+              title,
+              description,
+              estimatedTime,
+              materialsNeeded,
+              errors } = this.state;
+
+  return(
+      <div className="bounds course--detail">
         <h1>Update Course</h1>
         <div>
-          <Form>
-            <div class="grid-66">
-              <div class="course--header">
-                <h4 class="course--label">Update Course</h4>
+          <Form 
+            cancel={this.cancel}
+            errors={errors}
+            submit={this.updateCourse}
+            submitButtonText="Update Course Details"
+            elements={() => (<>
+            <div className="grid-66">
+              <div className="course--header">
+                <h4 className="course--label">Update Course</h4>
                 <div>
                 <input 
                     id="title" 
                     name="title" 
                     type="text" 
-                    class="input-title course--title--input" 
+                    onChange={this.change}
+                    className="input-title course--title--input" 
                     placeholder="Input New Course Name"
-                    value="Build a Basic Bookcase" />
+                    value={title} />
                 </div>
-                <p>By Joe Smith</p>
+                <p>By: {context.authenticatedUser.firstName} {context.authenticatedUser.lastName}</p>
               </div>
-              <div class="course--description">
+              <div className="course--description">
                 <div>
                 <textarea 
                     id="description"
                     name="description" 
-                    class="" 
-                    placeholder="Course description..." />
+                    type="text"
+                    onChange={this.change}
+                    className="course--description" 
+                    placeholder="Course description..."
+                    value={description} />
                 </div>
               </div>
             </div>
-            <div class="grid-25 grid-right">
-              <div class="course--stats">
-                <ul class="course--stats--list">
-                  <li class="course--stats--list--item">
+            <div className="grid-25 grid-right">
+              <div className="course--stats">
+                <ul className="course--stats--list">
+                  <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div>
                     <input 
                         id="estimatedTime" 
                         name="estimatedTime" 
                         type="text" 
-                        class="course--time--input"
+                        onChange={this.change}
+                        className="course--time--input"
                         placeholder="Hours" 
-                        value="14 hours" />
+                        value={estimatedTime || ""} />
                     </div>
                   </li>
-                  <li class="course--stats--list--item">
+                  <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                     <div>
                     <textarea 
                         id="materialsNeeded" 
                         name="materialsNeeded" 
-                        class="" 
-                        placeholder="List course materials..." />
+                        type="text"
+                        onChange={this.change}
+                        className="course--materials" 
+                        placeholder="List course materials..."
+                        value={materialsNeeded || ""} />
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
-            <div class="grid-100 pad-bottom">
-            <button 
-                class="button" 
-                type="submit">Update Course</button>
-            <button 
-                class="button button-secondary" 
-                onclick="event.preventDefault(); location.href='course-detail.html';">Cancel</button>
-            </div>
-          </Form>
+            </>)}
+            />
         </div>
       </div>
-*/
+  );//return
+}//render
+
+        change = (event) => {
+          const name = event.target.name;
+          const value = event.target.value;
+
+          this.setState(() => {
+          return {
+              [name]: value
+          };
+          });
+        };
+
+        updateCourse = () => {
+          const { context } = this.props;
+          const { id, emailAddress, password} = context.authenticatedUser;
+
+          //PUT Course details:
+          const {   
+              title,
+              description,
+              estimatedTime,
+              materialsNeeded  } = this.state;
+
+              const course = {   
+                  title,
+                  description,
+                  estimatedTime,
+                  materialsNeeded  }
+
+          context.data.updateCourse(id, course, emailAddress, password)
+            .then( errors => {
+              if(errors.length){
+                this.setState({ errors });
+              } else {
+                console.log(`Course: ${title} update: success!`);
+                    this.props.history.push("/");
+              }
+            })
+            .catch( err => { //handles rejected promises 
+              console.log(err);
+              // this.props.history.push("/error"); Future123
+            })
+        }
+
+        cancel = () => {
+          this.props.history.push("/");
+        }
+
+}//Component Bracket
