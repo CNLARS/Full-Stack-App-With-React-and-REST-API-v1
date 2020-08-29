@@ -15,7 +15,7 @@ import Authenticated from "./components/Authenticated";
 import PrivateRoute from "./PrivateRoute"; //PrivateRoute made accessible to authenticated users only.
 import NotFound from "./components/NotFound";
 
-// import CreateCourse from "./components/CreateCourse";
+import CreateCourse from "./components/CreateCourse";
 // import CourseDetail from "./components/CourseDetail";
 // import UpdateCourse from "./components/UpdateCourse";
 
@@ -28,7 +28,7 @@ const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
 const UserSignOutWithContext = withContext(UserSignOut); //Subscribes UserSignOut component when signOut function is called.
 const CoursesWithContext = withContext(Courses);
-// const CreateCourseWithContext = withContext();
+const CreateCourseWithContext = withContext(CreateCourse);
 // const UpdateCourseWithContext = withContext();
 const CourseDetailWithContext = withContext(CourseDetail);
 
@@ -45,7 +45,7 @@ export default () => (
         <Route path="/signout" component={UserSignOutWithContext} />
         <PrivateRoute path="/testing123" component={AuthWithContext} />
         <Route exact path="/courses" component={CoursesWithContext} />
-        {/* <PrivateRoute path="/courses/create" component={CreateCourseWithContext} /> */}
+        <PrivateRoute path="/courses/create" component={CreateCourseWithContext} />
         {/* <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext} /> */}
         <Route path="/courses/:id" component={CourseDetailWithContext} />
         <Route component={NotFound} />

@@ -11,7 +11,7 @@ export default ({ context }) => {
     </div>
     <div className="grid-100">
       <span>
-      <NavLink className="button button-secondary" to="/">Return to Course List</NavLink>
+      <NavLink className="button button-secondary" to="/">Go to Course List</NavLink>
       </span>  
     </div>
   </div>

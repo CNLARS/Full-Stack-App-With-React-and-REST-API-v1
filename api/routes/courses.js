@@ -18,7 +18,13 @@ Returns list of courses (including the user by association) */
     //Study Reference: https://gist.github.com/zcaceres/83b554ee08726a734088d90d455bc566
 router.get("/courses", asyncHandler( async(req, res) => {
     console.log("Testing321"); //Testing123
-    const courses = await Course.findAll();
+    const courses = await Course.findAll({
+        include: {
+            model: User,
+            as: "user",
+            attributes: ["id", "firstName", "lastName", "emailAddress"],
+        }
+    });
     // console.log(courses); //Testing123 
         if(courses){
                 console.log("Testing123"); //Testing123
@@ -32,7 +38,13 @@ router.get("/courses", asyncHandler( async(req, res) => {
 /* GET "/api/courses/:id", (200): 
 Returns course (including the user that owns the course) for the provided course ID */
 router.get("/courses/:id", asyncHandler( async(req, res) => {
-    const course = await Course.findByPk(req.params.id);
+    const course = await Course.findByPk(req.params.id, {
+        include: {
+            model: User,
+            as: "user",
+            attributes: ["id", "firstName", "lastName", "emailAddress"],
+        },
+    });
         if(course){
             res.json(course);
             res.status(200).end();

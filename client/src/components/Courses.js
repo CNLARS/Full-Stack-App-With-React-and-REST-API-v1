@@ -1,41 +1,29 @@
-/* 
-This component provides the "Courses" screen by assembling a list of courses from the
-  REST API's /api/courses route and rendering a list of courses.
-   Each course linking to its "Course Detail" route.
-    Component also renders a link to the "Create Course" page.
-*/
-
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 // import axios from "axios";
 import NotFound from "./NotFound";
+
+/* 
+This component provides the "Courses" screen by assembling a list of courses
+ from the /api/courses route and rendering a list of courses.
+   Each course linking to its "Course Detail" route.
+    Component also renders a link to the "Create Course" page.
+*/
 
 export default class Courses extends Component{
   state = {
       courseList: []
     };
 
-  // async componentDidMount(){
-  //   //Study Reference: https://medium.com/karuna-sehgal/making-api-calls-using-axios-75785deca566
-  //     axios.get("http://localhost:5000/api/courses")
-  //       .then(response => 
-  //         this.setState({
-  //         courseList: response.data
-  //       }))
-  //         .catch(error => console.log(error))
-  //           .finally(console.log("Go Go Gadget: API Data Fetch!"));
-  // }
-
    async componentDidMount(){
     const { context } = this.props;
-      context.data.getCourses()
+      await context.data.getCourses()
       .then(response => {
           this.setState({
           courseList: response
           })
         })
-          .catch(error => console.log(error))
-            .finally(console.log("Go Go Gadget: CoursesWithContext!"));
+          .catch(error => console.log(error));
   }
 
   render(){
@@ -66,12 +54,12 @@ export default class Courses extends Component{
             <ul>
               {courses}
             </ul>
-          <div className="grid-33" ><a className="course--module course--add--module" href="/courses/create">
+          <div className="grid-33" ><NavLink className="course--module course--add--module" to="/courses/create">
             <h3 className="course--add--title">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 13 13" className="add">
                 <polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 ">
                 </polygon>
-              </svg>Add New Course</h3></a>
+              </svg>Add New Course</h3></NavLink>
             </div>
       </div> 
        
