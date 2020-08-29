@@ -1,5 +1,5 @@
 /*"Update Course":
- By rendering a form that allows a authorizedUser to update courses.
+ A form that allows an authorizedUser to change course data.
   Includes an "Update Course" button,
    when clicked sends a PUT request to /api/courses/:id route.
     As well as a "Cancel" button to return user to "Course Detail" page. */

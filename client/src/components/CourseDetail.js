@@ -75,7 +75,7 @@ export default class CourseDetail extends Component{
                            </NavLink>
                            <NavLink 
                               className="button" 
-                              onClick={this.delete}
+                              onClick={this.deleteCourse}
                               to={`/courses/delete/${courseID}`}>
                               Delete Course
                            </NavLink>
@@ -149,7 +149,7 @@ export default class CourseDetail extends Component{
 // }}
 //   }
 
-      delete = () => {
+      deleteCourse = () => {
          const { context } = this.props;
          const { from } = this.props.location.state || { from: { pathname: "/" } };
          const { id } = this.props.match.params;
@@ -166,6 +166,7 @@ export default class CourseDetail extends Component{
             })
             .catch( err => {
                console.log(err);
+               // this.props.history.push("/error");
             })
       }
 }

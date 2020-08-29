@@ -19,7 +19,7 @@ export default class CreateCourse extends Component{
         description: "",
         estimatedTime: "",
         materialsNeeded: "",
-        userId: "",
+        // userId: "",
         errors: [],
     };
 
@@ -30,7 +30,7 @@ export default class CreateCourse extends Component{
                     description,
                     estimatedTime,
                     materialsNeeded,
-                    userId,
+                    // userId,
                     errors } = this.state;
         return(
         <div className="bounds course--detail">
@@ -38,7 +38,7 @@ export default class CreateCourse extends Component{
               <Form 
                   cancel={this.cancel}
                   errors={errors}
-                  submit={this.submit}
+                  submit={this.submitCourse}
                   submitButtonText="Add New Course"
                   elements={() => (<>
                 <div className="grid-66">
@@ -118,11 +118,11 @@ export default class CreateCourse extends Component{
                 });
             };
 
-            submit = () => {
+            submitCourse = () => {
                 const { context } = this.props;
-                const { id, emailAddress, password} = context.authenticatedUser;
+                const { emailAddress, password} = context.authenticatedUser;
             
-                //new User:
+                //new Course:
                 const {   
                     title,
                     description,
