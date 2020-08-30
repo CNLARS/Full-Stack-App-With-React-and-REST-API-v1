@@ -166,7 +166,8 @@ import Form from "./Form";
         }
 
         cancel = () => {
-          this.props.history.push("/");
+          const { id } = this.props.match.params;
+          this.props.history.push(`/courses/${id}`);
         }
 
 }
