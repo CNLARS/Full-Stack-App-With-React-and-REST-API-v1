@@ -10,16 +10,55 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true,
         },
-        //Refactored to feature Column declaration shorthand syntax:
+        //Refactored to feature validation messages:
         
     // firstName (String)
-        firstName: Sequelize.STRING,
+        firstName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'Please provide "Name" for Sign Up.',
+                    },
+                    notNull: {
+                        msg: 'Sign Up with a valid "Name".',
+                    },
+                },
+        },
     // lastName (String)
-        lastName: Sequelize.STRING,
+        lastName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'Please provide a "Surname" / "Last Name" / "Family Name" to Sign Up',
+                    },
+                    notNull: {
+                        msg: 'Invalid "Name" entry, please try again.',
+                    },
+                },
+        },
     // emailAddress (String)
-        emailAddress: Sequelize.STRING,
+        emailAddress: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: {
+                    msg: "E-Mail is required for creating an account and Sign In.",
+                },
+                isEmail: true,
+            },
+        },
     // password (String)
-        password: Sequelize.STRING,
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: "Please do include a secure password.",
+                    },
+                },
+        },
 
     }, { sequelize } );
 

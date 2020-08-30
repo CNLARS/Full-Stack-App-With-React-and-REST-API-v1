@@ -24,7 +24,6 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //cookie parser: 
-//+Study Reference: https://expressjs.com/en/guide/writing-middleware.html
 app.use(cookieParser());
 
 //Authentication to the db:

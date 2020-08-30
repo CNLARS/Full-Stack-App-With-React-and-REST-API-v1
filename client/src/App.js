@@ -12,7 +12,7 @@ import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
 import UserSignOut from "./components/UserSignOut";
 import Authenticated from "./components/Authenticated";
-import PrivateRoute from "./PrivateRoute"; //PrivateRoute made accessible to authenticated users only.
+import PrivateRoute from "./PrivateRoute";
 import NotFound from "./components/NotFound";
 
 import CreateCourse from "./components/CreateCourse";
@@ -21,12 +21,11 @@ import UpdateCourse from "./components/UpdateCourse";
 
 import withContext from "./Context";
 
-//Subscribing Components to Context:
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
-const UserSignOutWithContext = withContext(UserSignOut); //Subscribes UserSignOut component when signOut function is called.
+const UserSignOutWithContext = withContext(UserSignOut);
 const CoursesWithContext = withContext(Courses);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);

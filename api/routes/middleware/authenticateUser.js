@@ -27,7 +27,6 @@ const authenticateUser = asyncHandler( async(req, res, next) => {
       console.log("Testing");
     //For credentials to find User from db from name entered matches emailAddress of User
     const user = await User.findOne({
-      // const user = users.find(u => u.emailAddress === credentials.name);
       where: {
         emailAddress: credentials.name
       }

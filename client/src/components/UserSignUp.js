@@ -94,7 +94,6 @@ export default class UserSignUp extends Component {
       password,
     } = this.state;
 
-    //new User:
     const user = {
       firstName,
       lastName,
@@ -114,9 +113,9 @@ export default class UserSignUp extends Component {
             });
         }
       })
-      .catch( err => { //handles rejected promises 
+      .catch( err => {
         console.log(err);
-        this.props.history.push("/error");
+        // this.props.history.push("/error");
       })
   }
 

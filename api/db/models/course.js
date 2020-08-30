@@ -12,9 +12,31 @@ module.exports = (sequelize) => {
         },
 
     // title (String)
-        title: Sequelize.STRING,
+        title: {
+            type: Sequelize.STRING,
+            allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: "Please do include a title.",
+                    },
+                    notNull: {
+                        msg: "Course must have title.",
+                    },
+                },
+        },
     // description (Text)
-        description: Sequelize.TEXT,
+        description: {
+            type: Sequelize.TEXT,
+            allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: "A description is requested to create a new Course.",
+                    },
+                    notNull: {
+                        msg: "Course must have a valid description.",
+                    },
+                },
+        },
 
     // estimatedTime (String, nullable)
         estimatedTime: {
@@ -25,7 +47,7 @@ module.exports = (sequelize) => {
         materialsNeeded: {
             type: Sequelize.STRING,
             allowNull: true,
-        }
+        },
     }, { sequelize } );
 
     //Associates:

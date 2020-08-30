@@ -15,7 +15,7 @@ const User = require("../db/models").User;
 
 //GET "/api/users", (200): Returns the currently authenticated user
 router.get("/users", authenticateUser, asyncHandler( async(req, res) => {
-    const user = await User.findByPk(req.currentUser.id); //req.currentUser;
+    const user = await User.findByPk(req.currentUser.id);
         if(user){
             res.status(200).json(user);
             } else {
@@ -50,7 +50,6 @@ router.post("/users",[
             } else {
                 // Hash password and add new user to db:
                     user.password = bcryptjs.hashSync(user.password);
-                        console.log(user); //Testing123
                     await User.create(user);
                 //updates location and status code:
                     //Study Reference: 

@@ -119,8 +119,8 @@ import Form from "./Form";
             />
         </div>
       </div>
-  );//return
-}//render
+  );
+}
 
         change = (event) => {
           const name = event.target.name;
@@ -138,7 +138,6 @@ import Form from "./Form";
           const { id } = this.props.match.params;
           const { emailAddress, password} = context.authenticatedUser;
 
-          //PUT Course details:
           const {   
               title,
               description,
@@ -156,11 +155,11 @@ import Form from "./Form";
               if(errors.length){
                 this.setState({ errors });
               } else {
-                console.log(`Course: ${title} update: success!`);
+                // console.log(`Course: ${title} update: success!`);
                     this.props.history.push("/");
               }
             })
-            .catch( err => { //handles rejected promises 
+            .catch( err => {
               console.log(err);
               // this.props.history.push("/error"); Future123
             })
@@ -170,4 +169,4 @@ import Form from "./Form";
           this.props.history.push("/");
         }
 
-}//Component Bracket
+}

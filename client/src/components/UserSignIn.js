@@ -81,7 +81,7 @@ export default class UserSignIn extends Component {
             return { errors: [ "Sign-in was unsuccessful" ] };
           });
         } else { 
-          this.props.history.push(from); //from becomes the authentication boomerang on redirect. vs ("/authenticated") || ("/");
+          this.props.history.push(from);
           console.log(`Sign in: SUCCESS! ${emailAddress} is now logged in!`)
         }
       })

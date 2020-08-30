@@ -119,7 +119,6 @@ export default class CreateCourse extends Component{
                 const { context } = this.props;
                 const { id, emailAddress, password} = context.authenticatedUser;
             
-                //new Course:
                 const {   
                     title,
                     description,
@@ -135,14 +134,14 @@ export default class CreateCourse extends Component{
             
                 context.data.createCourse(course, emailAddress, password)
                   .then( errors => {
-                    if(errors.length){
+                    if(errors){
                       this.setState({ errors });
                     } else {
                       console.log(`Course: ${title} created successfully!`);
                           this.props.history.push("/");
                     }
                   })
-                  .catch( err => { //handles rejected promises 
+                  .catch( err => {
                     console.log(err);
                     // this.props.history.push("/error"); Future123
                   })
@@ -151,4 +150,4 @@ export default class CreateCourse extends Component{
             cancel = () => {
                 this.props.history.push("/");
               }
-}// Component Bracket
+}

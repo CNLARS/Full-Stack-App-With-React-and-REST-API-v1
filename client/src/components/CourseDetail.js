@@ -127,22 +127,10 @@ export default class CourseDetail extends Component{
 
       deleteCourse = () => {
          const { context } = this.props;
-         const { from } = this.props.location.state || { from: { pathname: "/" } };
          const { id } = this.props.match.params;
          const { emailAddress, password } = context.authenticatedUser;
 
          context.data.deleteCourse(id, emailAddress, password)
-            .then( errors => {
-               if (errors){
-                  this.setState({ errors });
-               } else { 
-                  this.props.history.push(from); //from is the authentication boomerang on redirect. vs ("/authenticated") || ("/");
-                  console.log(`CONFIRMED: course has been deleted.`)
-               }
-            })
-            .catch( err => {
-               console.log(err);
-               // this.props.history.push("/error");
-            })
+            .then( () => window.location.href = "/");
       }
 }

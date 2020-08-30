@@ -34,8 +34,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// //importing models:
-// db.models.Course = require("./models/course.js")(sequelize);
-// db.models.User = require('./models/user.js')(sequelize);
-
 module.exports = db;

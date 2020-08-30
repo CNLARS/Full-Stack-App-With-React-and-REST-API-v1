@@ -71,9 +71,7 @@ router.post("/courses",[
             const errorMessages = errors.array().map(error => error.msg);
             return res.status(400).json({errors: errorMessages});
             } else {
-                    console.log(course); //Testing123
-//Study Reference: https://www.geeksforgeeks.org/express-js-res-location-function/#:~:text=The%20res.,if%20you%20want%20to%20write.
-                course = await Course.create(req.body); // async/await for course.id
+                course = await Course.create(req.body);
                 res.location(`/courses/${course.id}`);
                 res.status(201).end();
         }    
@@ -88,8 +86,8 @@ router.put("/courses/:id",[
       .exists({ checkNull: true, checkFalsy: true })
       .withMessage('Course requires "description"'),
     ], authenticateUser, asyncHandler( async(req, res) => {
-        const errors = validationResult(req); //Check for "title" and "description"
-        let course; //recalling closures and scope practice
+        const errors = validationResult(req);
+        let course;
 
         if (!errors.isEmpty()) {
             const errorMessages = errors.array().map(error => error.msg);
@@ -107,9 +105,8 @@ router.delete("/courses/:id", authenticateUser, asyncHandler( async(req, res) =>
     try{
         course = await Course.findByPk(req.params.id);
         course.destroy();
-            // console.log("Course Deleted");
         res.status(204).end();
-    } catch(error){ //In the unexpected event of an error? 
+    } catch(error){
         res.status(400).end();
     }
 }));
