@@ -93,7 +93,7 @@ export default class Data {
       return [];
     }
     else if ( response.status === 400 ){
-      response.json().then(data => {
+      return response.json().then(data => { //HAPPY CODING!!!
         return data.errors;
       });
     } else {
