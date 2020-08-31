@@ -43,7 +43,7 @@ export default class CourseDetail extends Component{
                user: response.user,
                authUser: context.authenticatedUser,
             }); 
-            console.log(response); //Testing123
+            // console.log(response); //Testing123 //HAPPY CODING
          })
             .catch(error => console.log(error));
    }

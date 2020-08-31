@@ -52,8 +52,6 @@ router.post("/users",[
                     user.password = bcryptjs.hashSync(user.password);
                     await User.create(user);
                 //updates location and status code:
-                    //Study Reference: 
-                    //https://www.geeksforgeeks.org/express-js-res-location-function/#:~:text=The%20res.,if%20you%20want%20to%20write.
                     res.status(201).location("/").end();            
         }
 }));

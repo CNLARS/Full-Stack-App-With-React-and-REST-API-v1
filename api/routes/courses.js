@@ -15,9 +15,8 @@ const auth = require("basic-auth");
 
 /* GET "/api/courses", (200): 
 Returns list of courses (including the user by association) */
-    //Study Reference: https://gist.github.com/zcaceres/83b554ee08726a734088d90d455bc566
+
 router.get("/courses", asyncHandler( async(req, res) => {
-    console.log("Testing321"); //Testing123
     const courses = await Course.findAll({
         include: {
             model: User,
@@ -25,9 +24,8 @@ router.get("/courses", asyncHandler( async(req, res) => {
             attributes: ["id", "firstName", "lastName", "emailAddress"],
         }
     });
-    // console.log(courses); //Testing123 
+ 
         if(courses){
-                console.log("Testing123"); //Testing123
             res.json(courses);
             res.status(200).end();
         } else {

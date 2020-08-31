@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const bcryptjs = require("bcryptjs");
 const auth = require("basic-auth");
 const User = require("../../db/models").User;
